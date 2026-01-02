@@ -1,0 +1,44 @@
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+
+# both MoA
+
+
+# Training
+#  ADFTD
+
+python -u run.py --method GraMoA --task_name supervised --is_training 1 --root_path ./dataset/128Hz/ --model_id S-ADFTD-HC --model GraMoA --data MultiDatasets \
+--training_datasets ADFTD \
+--testing_datasets ADFTD \
+--e_layers 12 --batch_size 512 --n_heads 8 --d_model 128 --d_ff 256 --classify_choice hc_vs_abnormal --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15 \
+--dropout 0.1 --n_experts 4 --lambda_con 0.05 --warmup_con_epochs 10 --lambda_aux 0.01 \ 
+
+# # CNBPM
+# python -u run.py --method GraMoA --task_name supervised --is_training 1 --root_path ./dataset/128Hz/ --model_id S-CNBPM-Multi --model GraMoA --data MultiDatasets \
+# --training_datasets CNBPM \
+# --testing_datasets CNBPM \
+# --e_layers 12 --batch_size 512 --n_heads 8 --d_model 128 --d_ff 256 --classify_choice hc_vs_abnormal --swa \
+# --des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# P-ADIC
+python -u run.py --method GraMoA --task_name supervised --is_training 1 --root_path ./dataset/128Hz/ --model_id S-P-ADIC-HC --model GraMoA --data MultiDatasets \
+--training_datasets P-ADIC \
+--testing_datasets P-ADIC \
+--e_layers 12 --batch_size 512 --n_heads 8 --d_model 128 --d_ff 256 --classify_choice hc_vs_abnormal --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15 \
+--dropout 0.1 --n_experts 4 --lambda_con 0.05 --warmup_con_epochs 10 --lambda_aux 0.01 \ 
+
+# # CAUEEG
+# python -u run.py --method GraMoA --task_name supervised --is_training 1 --root_path ./dataset/128Hz/ --model_id S-CAUEEG-Multi --model GraMoA --data MultiDatasets \
+# --training_datasets CAUEEG \
+# --testing_datasets CAUEEG \
+# --e_layers 12 --batch_size 512 --n_heads 8 --d_model 128 --d_ff 256 --classify_choice hc_vs_abnormal --swa \
+# --des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# Joint Training (ADFTD + P-ADIC)
+python -u run.py --method GraMoA --task_name supervised --is_training 1 --root_path ./dataset/128Hz/ --model_id S-Joint-HC --model GraMoA --data MultiDatasets \
+--training_datasets ADFTD,P-ADIC \
+--testing_datasets ADFTD,P-ADIC \
+--e_layers 12 --batch_size 512 --n_heads 8 --d_model 128 --d_ff 256 --classify_choice hc_vs_abnormal --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15 \
+--dropout 0.1 --n_experts 4 --lambda_con 0.05 --warmup_con_epochs 10 --lambda_aux 0.01 \ 
