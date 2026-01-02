@@ -1,0 +1,6 @@
+# dataset 다운로드
+
+dataset 폴더 생성 후 128Hz 파일 이동
+
+ADFTD, P-ADIC 전처리 된 파일 다운 가능 링크
+: https://drive.google.com/drive/folders/18gOTJdmtQK4tQ1GcsB-adgpodC8k6P5I
